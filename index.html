@@ -1,308 +1,278 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MedNest Educare — MBBS Abroad</title>
+<title>MedNest Educare — Your Global Gateway to MBBS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --teal-deep:#0B3D2E;
-    --navy:#0F2440;
-    --gold:#D4A94A;
-    --cream:#FAF7EF;
-    --coral:#C0392B;
-    --ink:#132018;
-    --line:#d9cfb8;
+    --bg:#060B1A;
+    --bg2:#0B1730;
+    --panel:rgba(255,255,255,0.045);
+    --border:rgba(255,255,255,0.10);
+    --blue:#2F6FED;
+    --cyan:#2FD8FF;
+    --ink:#EAF1FF;
+    --muted:#8FA2C7;
+    --success:#2FE39A;
+    --whatsapp:#25D366;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
-    font-family:'Inter','Noto Sans Bengali',sans-serif;
-    background:var(--cream);
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
     color:var(--ink);
-    line-height:1.6;
+    line-height:1.65;
+    overflow-x:hidden;
   }
-  h1,h2,h3,.display{
-    font-family:'Fraunces','Noto Sans Bengali',serif;
-  }
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;}
+  .bn{font-family:'Noto Sans Bengali','Inter',sans-serif;color:var(--muted);font-size:.88rem;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
+  section{padding:70px 20px;max-width:1080px;margin:0 auto;position:relative;}
+
+  /* ===== BACKGROUND GRID + GLOW ===== */
+  .bg-grid{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  }
 
   /* ===== NAV ===== */
   header{
     position:sticky;top:0;z-index:50;
-    background:var(--teal-deep);
-    color:#fff;
-    padding:14px 20px;
+    background:rgba(6,11,26,0.75);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    padding:12px 20px;
     display:flex;align-items:center;justify-content:space-between;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
   }
-  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;}
-  .logo span{color:var(--gold);}
-  .call-btn{
-    background:var(--gold);color:var(--navy);
-    padding:8px 16px;border-radius:30px;
-    font-weight:600;font-size:.85rem;
+  .logo-badge{
+    background:#fff;border-radius:10px;padding:5px 10px;
+    display:flex;align-items:center;
+  }
+  .logo-badge img{height:32px;width:auto;}
+  .wa-btn{
+    background:var(--whatsapp);color:#fff;
+    padding:9px 18px;border-radius:30px;
+    font-weight:600;font-size:.82rem;
     display:flex;align-items:center;gap:6px;
+    box-shadow:0 4px 18px rgba(37,211,102,.35);
   }
 
   /* ===== HERO ===== */
   .hero{
-    background:linear-gradient(160deg,var(--teal-deep) 0%, var(--navy) 100%);
-    color:#fff;
-    padding:56px 20px 70px;
+    padding-top:80px;padding-bottom:60px;
     text-align:center;
-    position:relative;
-    overflow:hidden;
+    position:relative;z-index:1;
   }
-  .hero::after{
-    content:"✈";
-    position:absolute;
-    font-size:14rem;
-    opacity:.05;
-    right:-40px; top:-30px;
-    transform:rotate(20deg);
+  .orb{
+    position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;z-index:-1;
   }
+  .orb1{width:420px;height:420px;background:var(--blue);top:-140px;left:-120px;}
+  .orb2{width:340px;height:340px;background:var(--cyan);top:-60px;right:-100px;opacity:.22;}
   .eyebrow{
-    display:inline-block;
-    background:var(--coral);
-    color:#fff;
-    padding:6px 16px;
-    border-radius:20px;
-    font-size:.78rem;
-    font-weight:600;
-    letter-spacing:.03em;
-    margin-bottom:20px;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--panel);border:1px solid var(--border);
+    padding:7px 16px;border-radius:30px;
+    font-size:.78rem;font-weight:600;color:var(--cyan);
+    letter-spacing:.03em;margin-bottom:24px;
   }
   .hero h1{
-    font-size:2.1rem;
-    line-height:1.3;
-    font-weight:700;
-    margin-bottom:10px;
+    font-size:2.4rem;font-weight:800;line-height:1.25;
+    background:linear-gradient(135deg,#fff 30%, var(--cyan) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:16px;
   }
-  .hero h1 .accent{color:var(--gold);}
   .hero p.sub{
-    font-size:1.05rem;
-    opacity:.9;
-    max-width:520px;
-    margin:0 auto 30px;
+    font-size:1.05rem;color:var(--muted);
+    max-width:560px;margin:0 auto 10px;
   }
+  .hero p.bn{max-width:520px;margin:0 auto 30px;}
   .btn-primary{
     display:inline-block;
-    background:var(--gold);
-    color:var(--navy);
-    font-weight:700;
-    padding:15px 36px;
-    border-radius:8px;
-    font-size:1.02rem;
-    box-shadow:0 8px 24px rgba(212,169,74,.35);
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#04101F;font-weight:700;
+    padding:16px 38px;border-radius:10px;font-size:1rem;
+    box-shadow:0 10px 34px rgba(47,111,237,.4);
   }
 
   /* ===== OFFER STRIP ===== */
   .offer{
-    background:var(--coral);
-    color:#fff;
-    text-align:center;
-    padding:14px 16px;
-    font-weight:600;
-    font-size:.95rem;
-  }
-  .offer .price{color:var(--gold);font-size:1.15rem;font-weight:700;}
-
-  /* ===== SECTION WRAP ===== */
-  section{padding:60px 20px;max-width:1000px;margin:0 auto;}
-  .section-title{
-    text-align:center;
-    font-size:1.7rem;
-    color:var(--teal-deep);
-    margin-bottom:8px;
-  }
-  .section-sub{
-    text-align:center;
-    color:#6b6355;
-    margin-bottom:36px;
-    font-size:.95rem;
-  }
-
-  /* ===== FEATURES ===== */
-  .features{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-  }
-  .feature{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:20px 16px;
-    text-align:center;
-  }
-  .feature .ico{font-size:1.8rem;margin-bottom:8px;}
-  .feature p{font-size:.85rem;font-weight:600;color:var(--navy);}
-
-  /* ===== SLIDESHOW ===== */
-  .mne-slider{
-    position:relative;
-    max-width:100%;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
-  }
-  .slides{position:relative;height:340px;background:#000;}
-  .slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;}
-  .slide.active{opacity:1;}
-  .dots{display:flex;justify-content:center;gap:8px;margin-top:14px;}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;}
-  .dot.active{background:var(--teal-deep);}
-  @media(min-width:640px){.slides{height:460px;}}
-
-  /* ===== COUNTRIES ===== */
-  .countries{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-  .country{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:14px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .country .flag{font-size:1.8rem;}
-  .country .name{font-weight:600;font-size:.9rem;color:var(--navy);}
-  @media(min-width:640px){.countries{grid-template-columns:repeat(4,1fr);}}
-
-  /* ===== BOARDING PASS FORM ===== */
-  .pass-wrap{max-width:520px;margin:0 auto;}
-  .boarding-pass{
-    background:#fff;
-    border-radius:16px;
-    box-shadow:0 16px 40px rgba(11,61,46,.18);
-    overflow:hidden;
-  }
-  .pass-head{
-    background:var(--teal-deep);
-    color:#fff;
-    padding:18px 22px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .pass-head .airline{font-weight:700;font-size:1.05rem;}
-  .pass-head .tag{font-size:.7rem;background:var(--gold);color:var(--navy);padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:.04em;}
-  .pass-route{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 22px 10px;
-    align-items:center;
-  }
-  .pass-route .city{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--navy);}
-  .pass-route .label{font-size:.68rem;color:#8a8272;letter-spacing:.05em;}
-  .pass-route .plane{color:var(--gold);font-size:1.3rem;}
-  .perforation{
-    border-top:2px dashed var(--line);
-    margin:18px 22px 0;
-    position:relative;
-  }
-  .perforation::before,.perforation::after{
-    content:"";
-    position:absolute;top:-11px;
-    width:22px;height:22px;
-    border-radius:50%;
-    background:var(--cream);
-  }
-  .perforation::before{left:-33px;}
-  .perforation::after{right:-33px;}
-  .pass-body{padding:22px;}
-  .field{margin-bottom:16px;}
-  .field label{
-    display:block;font-size:.72rem;font-weight:600;
-    color:#8a8272;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px;
-  }
-  .field input, .field select, .field textarea{
-    width:100%;
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:11px 12px;
-    font-size:.95rem;
-    font-family:inherit;
-    background:var(--cream);
+    background:linear-gradient(90deg, rgba(47,111,237,.18), rgba(47,216,255,.14));
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    text-align:center;padding:16px 16px;font-weight:600;font-size:.92rem;
     color:var(--ink);
   }
+  .offer .price{color:var(--cyan);font-size:1.1rem;font-weight:700;}
+  .offer .bn{display:block;margin-top:4px;}
+
+  /* ===== SECTION HEAD ===== */
+  .section-title{font-size:1.65rem;font-weight:700;text-align:center;margin-bottom:8px;}
+  .section-sub{text-align:center;color:var(--muted);margin-bottom:14px;font-size:.95rem;}
+  .section-sub.bn{margin-bottom:36px;}
+
+  /* ===== FEATURE GRID ===== */
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .feature{
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    padding:22px 16px;text-align:center;
+    transition:border-color .2s;
+  }
+  .feature .ico{font-size:1.9rem;margin-bottom:10px;}
+  .feature p{font-size:.88rem;font-weight:600;}
+  @media(min-width:640px){.features{grid-template-columns:repeat(4,1fr);}}
+
+  /* ===== SLIDER ===== */
+  .mne-slider{
+    position:relative;border-radius:16px;overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+  }
+  .slides{position:relative;height:320px;background:#000;}
+  .slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;}
+  .slide.active{opacity:1;}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:16px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;}
+  .dot.active{background:var(--cyan);}
+  @media(min-width:640px){.slides{height:440px;}}
+
+  /* ===== COUNTRIES ===== */
+  .home-card{
+    background:linear-gradient(135deg, rgba(47,111,237,.16), rgba(47,216,255,.10));
+    border:1px solid var(--border);border-radius:16px;
+    padding:22px;display:flex;align-items:center;gap:16px;margin-bottom:20px;
+  }
+  .home-card .flag{font-size:2.4rem;}
+  .home-card .name{font-weight:700;font-size:1.1rem;}
+  .home-card .badge{
+    background:var(--cyan);color:#04101F;font-size:.68rem;font-weight:700;
+    padding:3px 10px;border-radius:20px;letter-spacing:.04em;margin-left:8px;
+  }
+  .home-card .desc{color:var(--muted);font-size:.85rem;margin-top:3px;}
+  .countries{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .country{
+    background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    padding:14px;display:flex;align-items:center;gap:12px;
+  }
+  .country .flag{font-size:1.7rem;}
+  .country .name{font-weight:600;font-size:.88rem;}
+  @media(min-width:640px){.countries{grid-template-columns:repeat(4,1fr);}}
+
+  /* ===== BOOKING PANEL ===== */
+  .panel-wrap{max-width:540px;margin:0 auto;}
+  .panel{
+    background:var(--panel);border:1px solid var(--border);border-radius:18px;
+    padding:30px 26px;box-shadow:0 24px 60px rgba(0,0,0,.4);
+    position:relative;overflow:hidden;
+  }
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:.72rem;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%;border:1px solid var(--border);border-radius:9px;
+    padding:12px 13px;font-size:.95rem;font-family:inherit;
+    background:rgba(255,255,255,0.03);color:var(--ink);
+  }
+  .field select{color:var(--ink);}
+  .field select option{background:#0B1730;color:var(--ink);}
+  .field input::placeholder, .field textarea::placeholder{color:#5c6d90;}
   .field textarea{resize:vertical;min-height:70px;}
   .field-row{display:flex;gap:12px;}
   .field-row .field{flex:1;}
   .submit-btn{
-    width:100%;
-    background:var(--gold);
-    color:var(--navy);
-    font-weight:700;
-    padding:15px;
-    border:none;
-    border-radius:8px;
-    font-size:1rem;
-    cursor:pointer;
-    margin-top:6px;
+    width:100%;background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#04101F;font-weight:700;padding:15px;border:none;border-radius:10px;
+    font-size:1rem;cursor:pointer;margin-top:6px;
   }
-  .submit-note{
-    text-align:center;font-size:.75rem;color:#8a8272;margin-top:10px;
-  }
-  .form-status{text-align:center;font-size:.85rem;margin-top:10px;font-weight:600;}
+  .submit-note{text-align:center;font-size:.75rem;color:var(--muted);margin-top:12px;}
+  .form-status{text-align:center;font-size:.85rem;margin-top:10px;font-weight:600;color:#F87171;}
 
-  /* ===== CONTACT / FOOTER ===== */
+  /* ===== SUCCESS OVERLAY ===== */
+  .success-overlay{
+    position:absolute;inset:0;
+    background:rgba(6,11,26,0.96);
+    display:none;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:30px;border-radius:18px;
+    animation:fadeIn .4s ease;
+  }
+  .success-overlay.show{display:flex;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .check-wrap{width:84px;height:84px;margin-bottom:20px;}
+  .checkmark-circle{
+    stroke:var(--success);stroke-width:2.5;fill:none;
+    stroke-dasharray:166;stroke-dashoffset:166;
+    animation:drawCircle .6s ease forwards;
+  }
+  .checkmark-check{
+    stroke:var(--success);stroke-width:3;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:48;stroke-dashoffset:48;
+    animation:drawCheck .4s ease forwards .55s;
+  }
+  @keyframes drawCircle{to{stroke-dashoffset:0;}}
+  @keyframes drawCheck{to{stroke-dashoffset:0;}}
+  .success-overlay h3{font-size:1.3rem;margin-bottom:8px;}
+  .success-overlay p{color:var(--muted);font-size:.9rem;max-width:320px;}
+
+  /* ===== FOOTER ===== */
   footer{
-    background:var(--navy);
-    color:#fff;
-    padding:44px 20px 30px;
-    text-align:center;
+    background:var(--bg2);border-top:1px solid var(--border);
+    padding:50px 20px 34px;text-align:center;position:relative;z-index:1;
   }
-  footer h3{color:var(--gold);margin-bottom:14px;font-size:1.2rem;}
-  footer .contact-line{margin-bottom:8px;font-size:.9rem;}
-  footer .addr{opacity:.75;font-size:.82rem;margin-top:14px;max-width:400px;margin-left:auto;margin-right:auto;}
-  footer .whatsapp{
-    display:inline-block;margin-top:20px;
-    background:#25D366;color:#fff;
-    padding:11px 26px;border-radius:30px;font-weight:600;font-size:.9rem;
+  footer h3{color:var(--cyan);margin-bottom:16px;font-size:1.2rem;}
+  .wa-line{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--whatsapp);color:#fff;
+    padding:11px 22px;border-radius:30px;font-weight:600;font-size:.88rem;
+    margin:6px;
   }
-  .tagline{margin-top:26px;font-size:.78rem;opacity:.5;letter-spacing:.04em;}
+  footer .addr{color:var(--muted);font-size:.82rem;margin-top:20px;max-width:400px;margin-left:auto;margin-right:auto;}
+  .tagline{margin-top:24px;font-size:.75rem;color:var(--muted);letter-spacing:.04em;}
 </style>
 </head>
 <body>
+<div class="bg-grid"></div>
 
 <header>
-  <div class="logo">MedNest <span>Educare</span></div>
-  <a href="tel:+917908249180" class="call-btn">📞 কল করুন</a>
+  <div class="logo-badge"><img src="mednest-logo.jpg" alt="MedNest Educare"></div>
+  <a href="https://wa.me/917908249180?text=Hi%2C%20I%20want%20to%20know%20more%20about%20MBBS%20Abroad" class="wa-btn" target="_blank">💬 Chat on WhatsApp</a>
 </header>
 
-<section class="hero" style="padding-bottom:0;">
-  <span class="eyebrow">বিদেশে MBBS Admission এর জন্য</span>
-  <h1>ডাক্তার হওয়ার স্বপ্ন<br><span class="accent">এবার সত্যি হবে</span></h1>
-  <p class="sub">Low NEET score? কোনো চিন্তা নেই। Georgia, Russia, Uzbekistan সহ ৮টি দেশে সরকারি ও স্বীকৃত বিশ্ববিদ্যালয়ে MBBS পড়ার সুযোগ — থাকা-খাওয়া সমেত মাত্র ₹23 লাখ থেকে।</p>
-  <a href="#booking" class="btn-primary">সিট বুক করুন →</a>
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <span class="eyebrow">⚕ MBBS ADMISSIONS ABROAD · 2026 INTAKE</span>
+  <h1>Your Global Gateway<br>to Becoming a Doctor</h1>
+  <p class="sub">Low NEET score is no longer a barrier. Study MBBS at NMC-approved universities across 10+ countries — affordable, guided, and future-ready.</p>
+  <p class="bn">আপনার ডাক্তার হওয়ার স্বপ্ন এখন বিশ্বব্যাপী — সঠিক গাইডেন্সে, সাধ্যের মধ্যে।</p>
+  <a href="#booking" class="btn-primary">Book Your Seat →</a>
 </section>
 
 <div class="offer">
-  সীমিত সময়ের অফার: সিট বুক করুন মাত্র <span class="price">₹99</span> টাকায় · প্রসেসিং ফি-এ 10% ছাড়
+  Limited-time offer: Book your seat for just <span class="price">₹99</span> · Get 10% off on processing fees
+  <span class="bn">সীমিত সময়ের অফার — মাত্র ৯৯ টাকায় সিট বুক করুন</span>
 </div>
 
 <section>
-  <h2 class="section-title">কেন MedNest Educare?</h2>
-  <p class="section-sub">আমরা যা প্রদান করি</p>
+  <h2 class="section-title">Why Choose MedNest Educare</h2>
+  <p class="section-sub bn">আমরা যা প্রদান করি</p>
   <div class="features">
-    <div class="feature"><div class="ico">🍛</div><p>বাঙালি খাবার ও ঘরোয়া পরিবেশ</p></div>
-    <div class="feature"><div class="ico">🎓</div><p>সাধ্যের মধ্যে MBBS ডিগ্রি</p></div>
-    <div class="feature"><div class="ico">🌍</div><p>NMC অনুমোদিত বিশ্ববিদ্যালয়</p></div>
-    <div class="feature"><div class="ico">🏠</div><p>থাকা-খাওয়া সমেত মাত্র ₹23 লাখ</p></div>
+    <div class="feature"><div class="ico">🎓</div><p>NMC-Approved Universities</p></div>
+    <div class="feature"><div class="ico">💰</div><p>All-Inclusive Fees from ₹23 Lakhs</p></div>
+    <div class="feature"><div class="ico">🧭</div><p>Free Career Counseling</p></div>
+    <div class="feature"><div class="ico">🛂</div><p>End-to-End Visa Support</p></div>
   </div>
 </section>
 
 <section>
-  <h2 class="section-title">সেমিনার হাইলাইটস</h2>
-  <p class="section-sub">জঙ্গিপুরে আমাদের MBBS Abroad Seminar থেকে</p>
+  <h2 class="section-title">Seminar Highlights</h2>
+  <p class="section-sub bn">জঙ্গিপুরে আমাদের MBBS Abroad Seminar থেকে</p>
   <div class="mne-slider">
     <div class="slides">
       <img src="mne1.jpg" class="slide active" alt="MedNest seminar photo 1">
@@ -318,94 +288,109 @@
 </section>
 
 <section>
-  <h2 class="section-title">MBBS পড়ার জন্য সেরা দেশগুলো</h2>
-  <p class="section-sub">Study MBBS in These Top Countries</p>
+  <h2 class="section-title">Study Destinations</h2>
+  <p class="section-sub bn">সেরা মেডিকেল দেশগুলো</p>
+
+  <div class="home-card">
+    <span class="flag">🇮🇳</span>
+    <div>
+      <span class="name">India<span class="badge">HOME COUNTRY</span></span>
+      <div class="desc">Trusted guidance from India, connecting you to the world's best medical universities.</div>
+    </div>
+  </div>
+
   <div class="countries">
     <div class="country"><span class="flag">🇬🇪</span><span class="name">Georgia</span></div>
     <div class="country"><span class="flag">🇷🇺</span><span class="name">Russia</span></div>
     <div class="country"><span class="flag">🇰🇬</span><span class="name">Kyrgyzstan</span></div>
-    <div class="country"><span class="flag">🇹🇱</span><span class="name">Timor Leste</span></div>
-    <div class="country"><span class="flag">🇵🇭</span><span class="name">Philippines</span></div>
-    <div class="country"><span class="flag">🇧🇾</span><span class="name">Belarus</span></div>
     <div class="country"><span class="flag">🇺🇿</span><span class="name">Uzbekistan</span></div>
+    <div class="country"><span class="flag">🇰🇿</span><span class="name">Kazakhstan</span></div>
+    <div class="country"><span class="flag">🇹🇲</span><span class="name">Turkmenistan</span></div>
+    <div class="country"><span class="flag">🇺🇦</span><span class="name">Ukraine</span></div>
+    <div class="country"><span class="flag">🇵🇭</span><span class="name">Philippines</span></div>
+    <div class="country"><span class="flag">🇧🇩</span><span class="name">Bangladesh</span></div>
     <div class="country"><span class="flag">🇳🇵</span><span class="name">Nepal</span></div>
+    <div class="country"><span class="flag">🇧🇾</span><span class="name">Belarus</span></div>
+    <div class="country"><span class="flag">🇦🇲</span><span class="name">Armenia</span></div>
+    <div class="country"><span class="flag">🇵🇱</span><span class="name">Poland</span></div>
+    <div class="country"><span class="flag">🇨🇳</span><span class="name">China</span></div>
+    <div class="country"><span class="flag">🇹🇱</span><span class="name">Timor Leste</span></div>
+    <div class="country"><span class="flag">🇧🇦</span><span class="name">Bosnia &amp; Herzegovina</span></div>
   </div>
 </section>
 
 <section id="booking">
-  <h2 class="section-title">আপনার সিট বুক করুন</h2>
-  <p class="section-sub">ফর্মটি পূরণ করুন — আমাদের কাউন্সেলর ২৪ ঘণ্টার মধ্যে যোগাযোগ করবেন</p>
+  <h2 class="section-title">Start Your Application</h2>
+  <p class="section-sub bn">ফর্মটি পূরণ করুন — আমাদের কাউন্সেলর হোয়াটসঅ্যাপে যোগাযোগ করবেন</p>
 
-  <div class="pass-wrap">
-    <div class="boarding-pass">
-      <div class="pass-head">
-        <span class="airline">MedNest Educare</span>
-        <span class="tag">BOARDING PASS</span>
+  <div class="panel-wrap">
+    <div class="panel">
+
+      <div class="success-overlay" id="successOverlay">
+        <svg class="check-wrap" viewBox="0 0 52 52">
+          <circle class="checkmark-circle" cx="26" cy="26" r="24"/>
+          <path class="checkmark-check" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <h3>Application Received!</h3>
+        <p>Thank you. Our counselor will reach out to you on WhatsApp within 24 hours.</p>
       </div>
-      <div class="pass-route">
-        <div>
-          <div class="label">FROM</div>
-          <div class="city">INDIA</div>
+
+      <form id="seatForm" action="https://formspree.io/f/maqgvlrq" method="POST">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required>
         </div>
-        <div class="plane">✈</div>
-        <div style="text-align:right;">
-          <div class="label">TO</div>
-          <div class="city">MBBS</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="Mobile number" required>
+          </div>
+          <div class="field">
+            <label>NEET Score</label>
+            <input type="text" name="neet_score" placeholder="Optional">
+          </div>
         </div>
-      </div>
-      <div class="perforation"></div>
-      <div class="pass-body">
-        <form id="seatForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <div class="field">
-            <label>Passenger Name</label>
-            <input type="text" name="name" placeholder="আপনার নাম" required>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label>Phone</label>
-              <input type="tel" name="phone" placeholder="মোবাইল নম্বর" required>
-            </div>
-            <div class="field">
-              <label>NEET Score</label>
-              <input type="text" name="neet_score" placeholder="ঐচ্ছিক">
-            </div>
-          </div>
-          <div class="field">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="ইমেল আইডি" required>
-          </div>
-          <div class="field">
-            <label>Preferred Destination</label>
-            <select name="country">
-              <option>Georgia</option>
-              <option>Russia</option>
-              <option>Kyrgyzstan</option>
-              <option>Timor Leste</option>
-              <option>Philippines</option>
-              <option>Belarus</option>
-              <option>Uzbekistan</option>
-              <option>Nepal</option>
-              <option>নিশ্চিত না / সাজেস্ট করুন</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Message (Optional)</label>
-            <textarea name="message" placeholder="আপনার কোনো প্রশ্ন থাকলে লিখুন"></textarea>
-          </div>
-          <button type="submit" class="submit-btn">সিট বুক করুন — ₹99</button>
-          <p class="submit-note">জমা দেওয়ার পর আমাদের টিম ফোনে যোগাযোগ করবে</p>
-          <p class="form-status" id="formStatus"></p>
-        </form>
-      </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="Your email" required>
+        </div>
+        <div class="field">
+          <label>Preferred Destination</label>
+          <select name="country">
+            <option>Georgia</option>
+            <option>Russia</option>
+            <option>Kyrgyzstan</option>
+            <option>Uzbekistan</option>
+            <option>Kazakhstan</option>
+            <option>Turkmenistan</option>
+            <option>Ukraine</option>
+            <option>Philippines</option>
+            <option>Bangladesh</option>
+            <option>Nepal</option>
+            <option>Belarus</option>
+            <option>Armenia</option>
+            <option>Poland</option>
+            <option>China</option>
+            <option>Not sure / Suggest for me</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Message (Optional)</label>
+          <textarea name="message" placeholder="Any questions or details you'd like to share"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Book Your Seat — ₹99</button>
+        <p class="submit-note">By submitting, our team will contact you shortly.</p>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+
     </div>
   </div>
 </section>
 
 <footer>
-  <h3>যোগাযোগ করুন</h3>
-  <p class="contact-line">📞 <a href="tel:+917908249180">7908249180</a> &nbsp;|&nbsp; <a href="tel:+917001282965">7001282965</a></p>
-  <p class="contact-line">✉️ <a href="mailto:mednestconsultancy@gmail.com">mednestconsultancy@gmail.com</a></p>
-  <a href="https://wa.me/917908249180" class="whatsapp">WhatsApp এ মেসেজ করুন</a>
+  <h3>Get In Touch</h3>
+  <a href="https://wa.me/917908249180?text=Hi%2C%20I%20want%20to%20know%20more%20about%20MBBS%20Abroad" class="wa-line" target="_blank">💬 WhatsApp: 79082 49180</a>
+  <a href="https://wa.me/917001282965?text=Hi%2C%20I%20want%20to%20know%20more%20about%20MBBS%20Abroad" class="wa-line" target="_blank">💬 WhatsApp: 70012 82965</a>
   <p class="addr">Miyapur, Near Jangipur Lodge, Raghunathganj, Murshidabad</p>
   <p class="tagline">★ Your Dream. Our Guidance. Your Success! ★</p>
 </footer>
@@ -433,13 +418,14 @@
     mneShowSlide();
   }, 3500);
 
-  // Form submit (Formspree AJAX so user stays on page)
+  // Form submit with success animation
   const form = document.getElementById('seatForm');
   const status = document.getElementById('formStatus');
+  const overlay = document.getElementById('successOverlay');
   form.addEventListener('submit', async function(e){
     e.preventDefault();
-    status.style.color = '#8a8272';
-    status.textContent = 'পাঠানো হচ্ছে...';
+    status.textContent = 'Submitting...';
+    status.style.color = '#8FA2C7';
     try{
       const res = await fetch(form.action, {
         method: 'POST',
@@ -447,16 +433,16 @@
         headers: { 'Accept': 'application/json' }
       });
       if(res.ok){
-        status.style.color = '#0B3D2E';
-        status.textContent = '✅ ধন্যবাদ! আমরা শীঘ্রই যোগাযোগ করব।';
+        status.textContent = '';
+        overlay.classList.add('show');
         form.reset();
       } else {
-        status.style.color = '#C0392B';
-        status.textContent = '⚠️ কিছু ভুল হয়েছে, আবার চেষ্টা করুন বা ফোনে যোগাযোগ করুন।';
+        status.style.color = '#F87171';
+        status.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
       }
     } catch(err){
-      status.style.color = '#C0392B';
-      status.textContent = '⚠️ কিছু ভুল হয়েছে, আবার চেষ্টা করুন বা ফোনে যোগাযোগ করুন।';
+      status.style.color = '#F87171';
+      status.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
     }
   });
 </script>
